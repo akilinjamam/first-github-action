@@ -2,9 +2,21 @@ import { StatusCodes } from "http-status-codes";
 import { catchAsync } from "../../utils/catchAsync";
 import { sendResponse } from "../../utils/sendResponse";
 import { awsService } from "./aws.service";
+import { MulterRequest } from "../../interface/error";
 
 const postAwsMediaFileController = catchAsync(async (req, res) => {
-  const result = await awsService.postAwsMediaFileService(req.body);
+  const files = req.files as MulterRequest[] | undefined;
+  console.log(files);
+  if (!files) {
+    return sendResponse(res, {
+      statusCode: StatusCodes.BAD_REQUEST,
+      success: false,
+      message: "No files were uploaded.",
+      data: null,
+    });
+  }
+
+  const result = await awsService.postAwsMediaFileService(files);
 
   sendResponse(res, {
     statusCode: StatusCodes.OK,

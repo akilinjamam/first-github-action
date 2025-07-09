@@ -11,7 +11,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("welcome to aws media file provider server");
 });
 
-app.use("/api/", router);
+app.use("/api/v1/", router);
 
 // not found route
 app.use(notFoundRoute);
