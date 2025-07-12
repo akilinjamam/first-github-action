@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print a working directory
-        run: |
-            node -v
-            git --version
-
-      - name: Check Linting
-        run: echo "Linting checking..."
-    
+      - name: copying the codes
+        uses: actions/checkout@v4
+      - name: install node-js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11.1
+      - name: check node version
+        run: node -v
