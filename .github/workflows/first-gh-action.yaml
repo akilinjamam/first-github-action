@@ -1,14 +1,16 @@
-name: First Workflow
+name: Ready the code and deploy
 
-on: push
+on: [push, workflow_dispatch]
 
 jobs: 
-  my-first-job:
+  test-code:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Print a message
-        run: echo "hello from my first github action"
+      - name: Print a working directory
+        run: |
+            node -v
+            git --version
 
       - name: Check Linting
         run: echo "Linting checking..."
