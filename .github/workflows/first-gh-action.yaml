@@ -17,3 +17,19 @@ jobs:
         run: node -v
       - name: install dependencies
         run: npm install --frozen-lockfile
+  build-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: install node-js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.11.1
+      - name: copying the codes
+        uses: actions/checkout@v4
+
+      - name: install dependencies
+        run: npm install --frozen-lockfile
+
+      - name: Build the code
+        uses: npm run build
+    
